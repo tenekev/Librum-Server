@@ -49,7 +49,6 @@ using (var scope = app.Services.CreateScope())
 	// Initialize the local database if self-hosted
 	if (builder.Configuration["LIBRUM_SELFHOSTED"] == "true"){
 		var context = services.GetRequiredService<DataContext>();
-    	context.Database.EnsureCreated();
         context.Database.Migrate();
 	}
 	
