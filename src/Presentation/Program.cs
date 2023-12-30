@@ -5,6 +5,7 @@ using Azure.Identity;
 using Domain.Entities;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Presentation;
 
 
@@ -49,6 +50,7 @@ using (var scope = app.Services.CreateScope())
 	if (builder.Configuration["LIBRUM_SELFHOSTED"] == "true"){
 		var context = services.GetRequiredService<DataContext>();
     	context.Database.EnsureCreated();
+        context.Database.Migrate();
 	}
 	
     // Configure Logging
